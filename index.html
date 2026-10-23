@@ -376,7 +376,7 @@ function renderHome(){
   const player = has
     ? '<div class="who"><span>Playing as <strong>' + esc(p.name || 'a guest') + '</strong></span><button class="linkbtn" data-act="editPlayer">Change</button></div>'
     : '<section class="pcard" aria-labelledby="pt"><h2 id="pt">Who’s playing?</h2>' +
-      '<p>Add your name and phone once and we’ll fill them in for every game. It’s optional.</p>' +
+      '<p>Add your name and phone once and we’ll fill them in for every game.</p>' +
       '<label for="pn">Full name</label><input id="pn" type="text" maxlength="40" autocomplete="name" value="' + esc(p.name || '') + '">' +
       '<div class="err" id="epn" role="alert"></div>' +
       '<label for="pp">Phone number</label><input id="pp" type="tel" inputmode="tel" autocomplete="tel" value="' + esc(p.phone || '') + '">' +
@@ -506,8 +506,8 @@ function renderFinish(){
     '<div class="handoff">' +
       '<h2 class="q">One last step</h2>' +
       (p.name
-        ? '<p class="done-note">Playing as <strong>' + esc(p.name) + '</strong>. We’ll fill in your name and phone for you. Entering the raffle is optional.</p>'
-        : '<p class="done-note">Add your name and, if you’d like to win a special prize, a phone number. Entering the raffle is optional. Tip: save them once on the <a href="#">Game Night home page</a> and they’ll fill in for every game.</p>') +
+        ? '<p class="done-note">Playing as <strong>' + esc(p.name) + '</strong>. We’ll fill in your name and phone for you.</p>'
+        : '<p class="done-note">Add your name and phone number to be entered for a special prize. Tip: save them once on the <a href="#">Game Night home page</a> and they’ll fill in for every game.</p>') +
       '<p class="done-note">Labels guests choose to share appear on the wall after the event.</p>' +
       '<div class="err" id="eForm" role="alert"></div>' +
       '<button class="primary" data-act="cHandoff">' + (p.name ? 'Finish my bottle' : 'Add my name and finish') + '</button>' +
