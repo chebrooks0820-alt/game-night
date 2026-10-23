@@ -221,7 +221,7 @@ button.gcard{width:100%;border:0;text-align:left;font:inherit}
 /* ---------- settings ---------- */
 // 1. Paste the public link of your Game Night Cognito form here (Publish page, "Share a link").
 //    While this is empty the page runs in preview mode and sends nothing.
-const COGNITO_FORM_URL = 'https://www.cognitoforms.com/FoundationForCommunityCare1/WineAndFood2026GameNight';
+const COGNITO_FORM_URL = '';
 // 2. Your existing voting form.
 const VOTING_URL = 'https://www.cognitoforms.com/FoundationForCommunityCare1/WineAndFoodFestival2026Voting';
 //    Name field in the voting form (leave empty to skip pre-filling).
@@ -295,7 +295,7 @@ const CATS = [
 ];
 
 // Sample labels for the preview wall. After the event, replace this list with the
-// exported labels that guests chose to show (answers and first names only, never contact info).
+// exported labels that guests chose to show (answers and names only, never contact info).
 // Each item: { cat, name, a: { promptNumber: answer } } where promptNumber starts at 0.
 const WALL_DATA = [
   { cat:'funny', name:'Dana', a:{0:'Cabernet of Consequences',1:'questionable',2:'someone else doing the dishes',4:'it’s been a week'} },
@@ -377,7 +377,7 @@ function renderHome(){
     ? '<div class="who"><span>Playing as <strong>' + esc(p.name || 'a guest') + '</strong></span><button class="linkbtn" data-act="editPlayer">Change</button></div>'
     : '<section class="pcard" aria-labelledby="pt"><h2 id="pt">Who’s playing?</h2>' +
       '<p>Add your name and phone once and we’ll fill them in for every game. It’s optional.</p>' +
-      '<label for="pn">First name</label><input id="pn" type="text" maxlength="24" autocomplete="given-name" value="' + esc(p.name || '') + '">' +
+      '<label for="pn">Full name</label><input id="pn" type="text" maxlength="40" autocomplete="name" value="' + esc(p.name || '') + '">' +
       '<div class="err" id="epn" role="alert"></div>' +
       '<label for="pp">Phone number</label><input id="pp" type="tel" inputmode="tel" autocomplete="tel" value="' + esc(p.phone || '') + '">' +
       '<div class="err" id="epp" role="alert"></div>' +
@@ -640,7 +640,7 @@ function savePlayer(){
   en.textContent = ''; ep.textContent = '';
   document.getElementById('pn').removeAttribute('aria-invalid'); document.getElementById('pp').removeAttribute('aria-invalid');
   let bad = false;
-  if (!name) { en.textContent = 'Add a first name so your entry has a name on it.'; document.getElementById('pn').setAttribute('aria-invalid', 'true'); bad = true; }
+  if (!name) { en.textContent = 'Add your full name so your entry has a name on it.'; document.getElementById('pn').setAttribute('aria-invalid', 'true'); bad = true; }
   if (phone && !validPhone(phone)) { ep.textContent = 'Check the phone number. It needs 10 digits.'; document.getElementById('pp').setAttribute('aria-invalid', 'true'); bad = true; }
   if (bad) { (en.textContent ? document.getElementById('pn') : document.getElementById('pp')).focus(); return; }
   S.player = {name:name, phone:phone}; store('wfg_player', S.player); S.editing = false; renderHome();
